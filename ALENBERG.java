@@ -3,8 +3,6 @@
  */
 package ALENBERG_Utilities;
 
-import java.util.Base64;
-
 /**
  *
  * @author ALENBERG
@@ -92,24 +90,33 @@ public class ALENBERG {
     static String stringToBinary(String toBinary) {
         String newstring = "";
         char[] toConvert = stringToChar(toBinary);
-        String strtemp = "";
+        String strTemp;
         for (int i = 0; i < toConvert.length; i++) {
-
-            int inttemp = (int)toConvert[i];
-            while ((int) inttemp > 0) {
-                strtemp += inttemp % 2;
-                inttemp = inttemp / 2;
+            strTemp = "";
+            int intTemp = (int) toConvert[i];
+            while ((int) intTemp > 0) {
+                strTemp += intTemp % 2;
+                intTemp = intTemp / 2;
             }
-            stringReverse(); //da implementare
-            newstring += strtemp + " ";
+            newstring += "0" + stringReverse(strTemp) + " ";
         }
-        //add string conversion
+        return newstring;
+    }
+
+    static String stringReverse(String toReverse) {
+        char[] str = stringToChar(toReverse);
+        char[] strtemp = new char[str.length];
+        String newstring = "";
+        for (int i = 0; i < str.length; i++) {
+            strtemp[i] = str[str.length - 1 - i];
+        }
+        for (int i = 0; i < strtemp.length; i++) {
+            newstring += strtemp[i];
+        }
         return newstring;
     }
 
     //TODO:
-    //reverse String
-    //String to binary
     //String to hex
     //File encryption 
     //File decryption
