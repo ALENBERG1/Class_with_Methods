@@ -9,6 +9,12 @@ package ALENBERG_Utilities;
  */
 public class ALENBERG {
     //Rot encryption
+    /**
+     * Rot Encryption
+     * @param toEncrypt
+     * @param rot_num
+     * @return 
+     */
     static String rot_encryption(String toEncrypt, int rot_num) {
         if(rot_num > 25){
             rot_num = rot_num % 25;
@@ -22,7 +28,7 @@ public class ALENBERG {
             if ((str[i] >= 65 && str[i] <= 90 && ((str[i] + rot_num) > 90)) || (str[i] >= 97 && str[i] <= 122 && ((str[i] + rot_num) > 122))) {
                 newstring += (char) (str[i] - 26 + rot_num);
             }
-            if((str[i] + rot_num >= 65 && str[i] + rot_num <= 90) || (str[i] + rot_num >= 97 && str[i] + rot_num <= 122)){
+            if((str[i] >= 65 && str[i] + rot_num <= 90) || (str[i] >= 97 && str[i] + rot_num <= 122)){
                 newstring += (char) (str[i] + rot_num);
             }
             if ((str[i] >= 0 && str[i] <= 64) || (str[i] >= 91 && str[i] <= 96) || str[i] >= 123) {
