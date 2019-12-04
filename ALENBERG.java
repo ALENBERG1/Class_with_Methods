@@ -24,7 +24,8 @@ public class ALENBERG {
             }
             if((str[i] + rot_num >= 65 && str[i] + rot_num <= 90) || (str[i] + rot_num >= 97 && str[i] + rot_num <= 122)){
                 newstring += (char) (str[i] + rot_num);
-            }if ((str[i] >= 0 && str[i] <= 64) || (str[i] >= 91 && str[i] <= 96) || str[i] >= 123) {
+            }
+            if ((str[i] >= 0 && str[i] <= 64) || (str[i] >= 91 && str[i] <= 96) || str[i] >= 123) {
                 newstring += (char)str[i];
             }
         }
