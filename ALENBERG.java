@@ -3,6 +3,8 @@
  */
 package ALENBERG_Utilities;
 
+import java.util.Base64;
+
 /**
  *
  * @author ALENBERG
@@ -16,17 +18,13 @@ public class ALENBERG {
      * @param rot_num
      * @return
      */
-    static String rot_encryption(String toEncrypt, int rot_num) {
+    static String rotEncryption(String toEncrypt, int rot_num) {
         //declarations
         String newstring = "";
-        char[] str = new char[toEncrypt.length()];
+        char[] str = stringToChar(toEncrypt);
 
         if (rot_num > 25) {                              //if int give is grater than 25 it take the reminder
             rot_num = rot_num % 25;
-        }
-
-        for (int i = 0; i < toEncrypt.length(); i++) {                              //transform the String give to char array
-            str[i] = toEncrypt.charAt(i);
         }
 
         for (int i = 0; i < str.length; i++) {                              //analize each character of the char array
@@ -55,17 +53,13 @@ public class ALENBERG {
      * @param rot_num
      * @return
      */
-    static String rot_decryption(String toDecrypt, int rot_num) {
+    static String rotDecryption(String toDecrypt, int rot_num) {
         //declarations
         String newstring = "";
-        char[] str = new char[toDecrypt.length()];
+        char[] str = stringToChar(toDecrypt);
 
         if (rot_num > 25) {                              //if int give is grater than 25 it take the reminder
             rot_num = rot_num % 25;
-        }
-
-        for (int i = 0; i < toDecrypt.length(); i++) {                              //transform the String give to char array
-            str[i] = toDecrypt.charAt(i);
         }
 
         for (int i = 0; i < str.length; i++) {                              //analize each character of the char array
@@ -87,12 +81,34 @@ public class ALENBERG {
         return newstring;
     }
 
-    static String stringToBinary(String toBinary){
+    private static char[] stringToChar(String str) {
+        char[] charArray = new char[str.length()];
+        for (int i = 0; i < str.length(); i++) {                              //transform the String give to char array
+            charArray[i] = str.charAt(i);
+        }
+        return charArray;
+    }
+
+    static String stringToBinary(String toBinary) {
         String newstring = "";
+        char[] toConvert = stringToChar(toBinary);
+        String strtemp = "";
+        for (int i = 0; i < toConvert.length; i++) {
+
+            int inttemp = (int)toConvert[i];
+            while ((int) inttemp > 0) {
+                strtemp += inttemp % 2;
+                inttemp = inttemp / 2;
+            }
+            stringReverse(); //da implementare
+            newstring += strtemp + " ";
+        }
         //add string conversion
         return newstring;
     }
+
     //TODO:
+    //reverse String
     //String to binary
     //String to hex
     //File encryption 
