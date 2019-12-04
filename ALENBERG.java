@@ -19,13 +19,13 @@ public class ALENBERG {
             str[i] = toEncrypt.charAt(i);
         }
         for (int i = 0; i < str.length; i++) {
-            if (str[i] >= 65 && str[i] <= 90 && ((str[i] + rot_num) > 90)) {
+            if ((str[i] >= 65 && str[i] <= 90 && ((str[i] + rot_num) > 90)) || (str[i] >= 97 && str[i] <= 122 && ((str[i] + rot_num) > 122))) {
                 newstring += (char) (str[i] - 26 + rot_num);
             }
-            if (str[i] >= 97 && str[i] <= 122 && ((str[i] + rot_num) > 122)) {
-                newstring += (char) (str[i] - 26 + rot_num);
-            } else {
+            if((str[i] + rot_num >= 65 && str[i] + rot_num <= 90) || (str[i] + rot_num >= 97 && str[i] + rot_num <= 122)){
                 newstring += (char) (str[i] + rot_num);
+            }if ((str[i] >= 0 && str[i] <= 64) || (str[i] >= 91 && str[i] <= 96) || str[i] >= 123) {
+                newstring += (char)str[i];
             }
         }
         return newstring;
