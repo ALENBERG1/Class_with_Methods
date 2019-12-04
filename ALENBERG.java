@@ -32,5 +32,9 @@ public class ALENBERG {
     }
     
     //TODO:
-    //Rot decryption
+    //Rot String decryption
+    //String to binary
+    //File encryption 
+    //File decryption
+    //String to hex
 }
