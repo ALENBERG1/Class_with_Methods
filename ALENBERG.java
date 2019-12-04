@@ -1,7 +1,7 @@
 /*
  * Methods created by ALENBERG
  */
-package com.mycompany.classeconmetodi;
+package ALENBERG_Utilities;
 
 /**
  *
