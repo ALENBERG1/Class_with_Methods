@@ -126,13 +126,25 @@ public class ALENBERG {
             if (charTemp.equals("1") || charTemp.equals("0") || charTemp.equals(" ")) {
                 binstr = toHex;
             } else {
-                binstr = stringToBinary(toHex);//da finire
+                binstr = stringToBinary(toHex);
             }
         }
         String newstring = "";
-        String temp = "";
+        String temp1;
+        String temp2;
+        String str = "";
         for (int i = 0; i < binstr.length(); i++) {
-
+            String charTemp = "" + binstr.charAt(i);
+            if (charTemp.equals(" ")) {
+                str = "";
+                continue;
+            }
+            str += charTemp;
+            if (i > 1 && (str.length() % 8) == 0) {
+                temp1 = str.substring(0, 4);
+                temp2 = str.substring(4, 8);
+                newstring += hexConvert(temp1) + hexConvert(temp2) + " ";
+            }
         }
         return newstring;
     }
@@ -154,8 +166,8 @@ public class ALENBERG {
                 continue;
             }
             str += charTemp;
-            if (i > 7 && (i % 8) == 0) {
-                newstring += (char)(binaryTranslator(str));
+            if (i > 1 && (str.length() % 8) == 0) {
+                newstring += (char) (binaryTranslator(str));
             }
 
         }
@@ -163,13 +175,47 @@ public class ALENBERG {
         return newstring;
     }
 
+    private static String hexConvert(String hexstr) {
+        String newstring = "";
+        int temp = binaryTranslator(hexstr);
+        if (temp > 9) {
+            switch (temp) {
+                case 10:
+                    newstring = "A";
+                    break;
+                case 11:
+                    newstring = "B";
+                    break;
+                case 12:
+                    newstring = "C";
+                    break;
+                case 13:
+                    newstring = "D";
+                    break;
+                case 14:
+                    newstring = "E";
+                    break;
+                case 15:
+                    newstring = "F";
+            }
+        }else{
+            newstring += temp;
+        }
+        return newstring;
+    }
+
     private static int binaryTranslator(String binary) {
         int newint = 0;
         int j = 0;
+        int k;
         for (int i = binary.length() - 1; i >= 0; i--) {
+            k = 1;
             char temp = binary.charAt(i);
             if (temp == '1') {
-                newint += //2 elevato a j
+                for (int a = j; a > 0; a--) {
+                    k = k * 2;
+                }
+                newint += k;
             }
             j++;
         }
