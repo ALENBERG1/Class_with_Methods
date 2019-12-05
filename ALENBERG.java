@@ -98,7 +98,10 @@ public class ALENBERG {
                 strTemp += intTemp % 2;
                 intTemp = intTemp / 2;
             }
-            newstring += "0" + stringReverse(strTemp) + " ";
+            while (strTemp.length() < 8) {
+                strTemp += "0";
+            }
+            newstring += stringReverse(strTemp) + " ";
         }
         return newstring;
     }
@@ -116,8 +119,66 @@ public class ALENBERG {
         return newstring;
     }
 
+    static String stringToHex(String toHex) {
+        String binstr = "";
+        for (int i = 0; i < toHex.length(); i++) {
+            String charTemp = "" + toHex.charAt(i);
+            if (charTemp.equals("1") || charTemp.equals("0") || charTemp.equals(" ")) {
+                binstr = toHex;
+            } else {
+                binstr = stringToBinary(toHex);//da finire
+            }
+        }
+        String newstring = "";
+        String temp = "";
+        for (int i = 0; i < binstr.length(); i++) {
+
+        }
+        return newstring;
+    }
+
+    static String binaryToString(String toString) {
+        String newstring = "";
+        for (int i = 0; i < toString.length(); i++) {
+            String charTemp = "" + toString.charAt(i);
+            if (charTemp.equals("1") || charTemp.equals("0") || charTemp.equals(" ")) {
+            } else {
+                return "Errore!";
+            }
+        }
+        String str = "";
+        for (int i = 0; i < toString.length(); i++) {
+            String charTemp = "" + toString.charAt(i);
+            if (charTemp.equals(" ")) {
+                str = "";
+                continue;
+            }
+            str += charTemp;
+            if (i > 7 && (i % 8) == 0) {
+                newstring += (char)(binaryTranslator(str));
+            }
+
+        }
+
+        return newstring;
+    }
+
+    private static int binaryTranslator(String binary) {
+        int newint = 0;
+        int j = 0;
+        for (int i = binary.length() - 1; i >= 0; i--) {
+            char temp = binary.charAt(i);
+            if (temp == '1') {
+                newint += //2 elevato a j
+            }
+            j++;
+        }
+        return newint;
+    }
+
     //TODO:
     //String to hex
+    //Binary translator
     //File encryption 
     //File decryption
 }
