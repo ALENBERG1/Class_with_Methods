@@ -143,9 +143,14 @@ public class ALENBERG {
             if (i > 1 && (str.length() % 8) == 0) {
                 temp1 = str.substring(0, 4);
                 temp2 = str.substring(4, 8);
-                newstring += hexConvert(temp1) + hexConvert(temp2) + " ";
+                newstring += strToHexConvert(temp1) + strToHexConvert(temp2) + " ";
             }
         }
+        return newstring;
+    }
+    
+    static String hexToString(String toHex){ //da finire
+        String newstring = "";
         return newstring;
     }
 
@@ -175,7 +180,7 @@ public class ALENBERG {
         return newstring;
     }
 
-    private static String hexConvert(String hexstr) {
+    private static String strToHexConvert(String hexstr) {
         String newstring = "";
         int temp = binaryTranslator(hexstr);
         if (temp > 9) {
