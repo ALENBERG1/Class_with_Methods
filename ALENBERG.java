@@ -226,6 +226,30 @@ public class ALENBERG {
         }
         return newint;
     }
+    
+    /**
+     * control all characters of a string, if it find a 
+     * character that isn't in the alphabet it return 'false' 
+     * else it return 'true'
+     * @param strToControl
+     * @return boolean
+     */
+    static boolean alphabetControl(String strToControl){
+        boolean result = true;
+        char[] characters = {'0','1','2','3','4','5','6','7','8','9',
+        '!','"','\'','\\','^','£','$','%','&','/','(',')','=','?','[',
+        ']','+','-','_','*','.',':',';','€','<','>'};
+       
+        for (int i = 0; i < characters.length; i++){
+            for (int j = 0; j < strToControl.length(); j++){
+                char temp = strToControl.charAt(j);
+                if (temp == characters[i]){
+                    result = false;
+                }
+            }
+        }
+        return result;
+    }
 
     //TODO:
     //String to hex
