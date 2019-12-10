@@ -148,10 +148,75 @@ public class ALENBERG {
         }
         return newstring;
     }
-    
-    static String hexToString(String toHex){ //da finire
+ 
+//                                                                                                                da finire
+    static String hexToString(String hexToString) {
+        char[] charArrTemp = stringToChar(hexToString);
+        char[] hexCharacters = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+            'A', 'a', 'B', 'b', 'C', 'c', 'D', 'd', 'E', 'e', 'F', 'f'};
+        for (int i = 0; i < charArrTemp.length; i++) {
+            for (int j = 0; j < hexToString.length(); j++) {
+                if (charArrTemp[i] != hexCharacters[j]) {
+                    System.err.println("Hex String Wrong!");
+                    return null;
+                }
+            }
+        }
         String newstring = "";
+        int characterInt = 0;
+        int j;
+        for (int i = 0; i < hexToString.length(); i++) {
+            j = 1;
+            String strTemp = "" + hexToString.charAt(i);
+            if (strTemp.equals(" ") || !strTemp.equals(hexCharacters[i])) {
+                continue;
+            }
+            if (strTemp.equals(hexCharacters[i])) {
+                int pow = 1;
+                int intTemp = 0;
+                char charTemp = strTemp.charAt(i);
+                if (((int) charTemp) > 9) {
+                    intTemp = hexCharactersInt(charTemp);
+                    for (int k = j; k > 0; k--) {
+                        pow *= (16 * k * intTemp);
+                        j++;
+                    }
+                    characterInt += pow;
+                }
+            }
+            newstring += (char) characterInt;
+        }
         return newstring;
+    }
+
+    static private int hexCharactersInt(char toDecode) {
+        int newint = 0;
+        switch (toDecode) {
+            case 'A':
+            case 'a':
+                newint = 10;
+                break;
+            case 'B':
+            case 'b':
+                newint = 11;
+                break;
+            case 'C':
+            case 'c':
+                newint = 12;
+                break;
+            case 'D':
+            case 'd':
+                newint = 13;
+                break;
+            case 'E':
+            case 'e':
+                newint = 14;
+                break;
+            case 'F':
+            case 'f':
+                newint = 15;
+        }
+        return newint;
     }
 
     static String binaryToString(String toString) {
@@ -261,8 +326,8 @@ public class ALENBERG {
     }
 
     //TODO:
-    //String to hex
-    //Binary translator
+    //Number to hex 
+    //Hex to string
     //File encryption 
     //File decryption
 }
