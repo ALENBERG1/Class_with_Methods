@@ -148,43 +148,39 @@ public class ALENBERG {
         }
         return newstring;
     }
- 
-//                                                                                                                da finire
+
     static String hexToString(String hexToString) {
         char[] charArrTemp = stringToChar(hexToString);
-        char[] hexCharacters = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
-            'A', 'a', 'B', 'b', 'C', 'c', 'D', 'd', 'E', 'e', 'F', 'f'};
         for (int i = 0; i < charArrTemp.length; i++) {
-            for (int j = 0; j < hexToString.length(); j++) {
-                if (charArrTemp[i] != hexCharacters[j]) {
-                    System.err.println("Hex String Wrong!");
-                    return null;
-                }
+            if (charArrTemp[i] != 32 && charArrTemp[i] < 48 || 
+                    (charArrTemp[i] > 57 && charArrTemp[i] < 65) || (charArrTemp[i] > 71 && charArrTemp[i] < 97) || 
+                    charArrTemp[i] > 104) {
+                System.err.println("Hex String Wrong!");
+                return null;
             }
         }
         String newstring = "";
-        int characterInt = 0;
-        int j;
-        for (int i = 0; i < hexToString.length(); i++) {
-            j = 1;
-            String strTemp = "" + hexToString.charAt(i);
-            if (strTemp.equals(" ") || !strTemp.equals(hexCharacters[i])) {
+        int Cnumber = 0;
+        int Cindex = 0;
+        int exp = 1;
+        for (int i = 0; i < charArrTemp.length; i++){
+            char charTemp = charArrTemp[i];
+            if (charTemp == ' '){
+                Cindex = 0;
                 continue;
             }
-            if (strTemp.equals(hexCharacters[i])) {
-                int pow = 1;
-                int intTemp = 0;
-                char charTemp = strTemp.charAt(i);
-                if (((int) charTemp) > 9) {
-                    intTemp = hexCharactersInt(charTemp);
-                    for (int k = j; k > 0; k--) {
-                        pow *= (16 * k * intTemp);
-                        j++;
-                    }
-                    characterInt += pow;
-                }
+            if (charTemp >= 48 && charTemp <= 57){
+                Cnumber += (((int)charTemp - 48) * Math.pow(16, (exp - Cindex)));
+                Cindex++;
+            }else{
+                Cnumber += (hexCharactersInt(charTemp) * Math.pow(16, (exp - Cindex)));
+                Cindex++;
             }
-            newstring += (char) characterInt;
+            if (Cindex == 2){
+                newstring += (char)Cnumber;
+                Cnumber = 0;
+                Cindex = 0;
+            }
         }
         return newstring;
     }
@@ -268,7 +264,7 @@ public class ALENBERG {
                 case 15:
                     newstring = "F";
             }
-        }else{
+        } else {
             newstring += temp;
         }
         return newstring;
@@ -318,9 +314,9 @@ public class ALENBERG {
 
     static double roundNumber(double toRound, int floatingPoint) {
         int integerNum = (int) toRound;
-        
+
         String str = "" + (toRound % integerNum);
-        
+
         double result = Double.parseDouble(integerNum + str.substring(1, (2 + floatingPoint)));
         return result;
     }
