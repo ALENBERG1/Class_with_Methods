@@ -320,11 +320,55 @@ public class ALENBERG {
         double result = Double.parseDouble(integerNum + str.substring(1, (2 + floatingPoint)));
         return result;
     }
+    
+    public static String[] minSort(String[] arr){
+        for (int j = 0; j < arr.length - 1; j++) {
+            for (int i = j; i < arr.length; i++) {
+                if (minsorting(arr[j], arr[i]) == 1) {
+                    String temp = arr[j];
+                    arr[j] = arr[i];
+                    arr[i] = temp;
+                }
+            }
+        }
+        return arr;
+    }
+    
+    private static int minsorting(String arr1, String arr2) {
+        
+        if(arr1.equals(arr2)){
+            return 0;
+        }
+        int l = arr1.length() - 1;
+        if (arr1.length() < arr2.length()) {
+            if (arr2.startsWith(arr1)) {
+                return 0;
+            }
+            l = arr1.length() - 1;
+        } else if (arr2.length() < arr1.length()) {
+            if (arr1.startsWith(arr2)) {
+                return 1;
+            }
+            l = arr2.length() - 1;
+        }
+
+        for (int i = 0; i <= l; i++) {
+            if ((int)arr1.charAt(i) < (int)arr2.charAt(i)) {
+                return 0;
+            }
+            if((int)arr1.charAt(i) > (int)arr2.charAt(i)){
+                break;
+            }
+            if (l == i && (int)arr1.charAt(l) == (int)arr2.charAt(l)) {
+                return (l > arr2.length()) ? 0 : 1;
+            }
+        }
+        return 1;
+    }
 
     //TODO:
     //Number to hex 
     //Hex to string
-    //String sorting
     //File encryption 
     //File decryption
 }
