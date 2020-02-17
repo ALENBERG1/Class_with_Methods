@@ -16,7 +16,7 @@ public class ALENBERG {
      * @param rot_num
      * @return
      */
-    static String rotEncryption(String toEncrypt, int rot_num) {
+    public static String rotEncryption(String toEncrypt, int rot_num) {
         //declarations
         String newstring = "";
         char[] str = stringToChar(toEncrypt);
@@ -51,7 +51,7 @@ public class ALENBERG {
      * @param rot_num
      * @return
      */
-    static String rotDecryption(String toDecrypt, int rot_num) {
+    public static String rotDecryption(String toDecrypt, int rot_num) {
         //declarations
         String newstring = "";
         char[] str = stringToChar(toDecrypt);
@@ -87,7 +87,7 @@ public class ALENBERG {
         return charArray;
     }
 
-    static String stringToBinary(String toBinary) {
+    public static String stringToBinary(String toBinary) {
         String newstring = "";
         char[] toConvert = stringToChar(toBinary);
         String strTemp;
@@ -106,7 +106,7 @@ public class ALENBERG {
         return newstring;
     }
 
-    static String stringReverse(String toReverse) {
+    public static String stringReverse(String toReverse) {
         char[] str = stringToChar(toReverse);
         char[] strtemp = new char[str.length];
         String newstring = "";
@@ -119,7 +119,7 @@ public class ALENBERG {
         return newstring;
     }
 
-    static String stringToHex(String toHex) {
+    public static String stringToHex(String toHex) {
         String binstr = "";
         for (int i = 0; i < toHex.length(); i++) {
             String charTemp = "" + toHex.charAt(i);
@@ -149,7 +149,7 @@ public class ALENBERG {
         return newstring;
     }
 
-    static String hexToString(String hexToString) {
+    public static String hexToString(String hexToString) {
         char[] charArrTemp = stringToChar(hexToString);
         for (int i = 0; i < charArrTemp.length; i++) {
             if (charArrTemp[i] != 32 && charArrTemp[i] < 48 || 
@@ -185,7 +185,7 @@ public class ALENBERG {
         return newstring;
     }
 
-    static private int hexCharactersInt(char toDecode) {
+    private static int hexCharactersInt(char toDecode) {
         int newint = 0;
         switch (toDecode) {
             case 'A':
@@ -215,7 +215,7 @@ public class ALENBERG {
         return newint;
     }
 
-    static String binaryToString(String toString) {
+    public static String binaryToString(String toString) {
         String newstring = "";
         for (int i = 0; i < toString.length(); i++) {
             String charTemp = "" + toString.charAt(i);
@@ -295,7 +295,7 @@ public class ALENBERG {
      * @param strToControl
      * @return boolean
      */
-    static boolean alphabetControl(String strToControl) {
+    public static boolean alphabetControl(String strToControl) {
         boolean result = true;
         char[] characters = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
             '!', '"', '\'', '\\', '^', '£', '$', '%', '&', '/', '(', ')', '=', '?', '[',
@@ -312,7 +312,7 @@ public class ALENBERG {
         return result;
     }
 
-    static double roundNumber(double toRound, int floatingPoint) {
+    public static double roundNumber(double toRound, int floatingPoint) {
         int integerNum = (int) toRound;
 
         String str = "" + (toRound % integerNum);
